@@ -1,0 +1,44 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "GameMap.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "GameMap.tmx": {
+            "scale": 8,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 180.875,
+                "y": 313.625
+            }
+        },
+        "Pokemon Style Game.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/sharm/OneDrive/Desktop/Codex/JavaScript/Assets",
+    "map.height": 40,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 12,
+    "map.tileWidth": 12,
+    "map.width": 70,
+    "openFiles": [
+        "Pokemon Style Game.tsx",
+        "GameMap.tmx"
+    ],
+    "project": "untitled.tiled-project",
+    "recentFiles": [
+        "Pokemon Style Game.tsx",
+        "GameMap.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 12,
+        "width": 12
+    }
+}
