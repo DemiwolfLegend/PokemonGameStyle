@@ -79,40 +79,45 @@ function animate() {
   background.draw()
   background.loadPlayer()
 
-  if (keys.w.pressed) {
+  if (keys.w.pressed && lastKey === 'w') {
     background.position.y += 3;
   }
-  if (keys.a.pressed) {
+  else if (keys.a.pressed && lastKey === 'a') {
     background.position.x += 3;
   }
-  if (keys.s.pressed) {
+  else if (keys.s.pressed && lastKey === 's') {
     background.position.y -= 3;
   }
-  if (keys.d.pressed) {
+  else if (keys.d.pressed && lastKey === 'd') {
     background.position.x -= 3;
   }
 }
 animate()
 
+let lastKey = '';
 window.addEventListener('keydown', (event) => {
   switch (event.code) {
     case 'KeyW':
-      keys.w.pressed = true
+      keys.w.pressed = true;
+      lastKey = 'w';
       console.log("A key is pressed..", event.code)
       break;
 
     case 'KeyA':
-      keys.a.pressed = true
+      keys.a.pressed = true;
+      lastKey = 'a';
       console.log("A key is pressed..", event.code)
       break;
 
     case 'KeyS':
-      keys.s.pressed = true
+      keys.s.pressed = true;
+      lastKey = 's';
       console.log("A key is pressed..", event.code)
       break;
 
     case 'KeyD':
-      keys.d.pressed = true
+      keys.d.pressed = true;
+      lastKey = 'd';
       console.log("A key is pressed..", event.code)
       break;
 
