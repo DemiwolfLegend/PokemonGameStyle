@@ -29,12 +29,24 @@ class Sprite {
     this.image = image
   }
   draw() {
-
     c.drawImage(
       this.image,
       this.position.x,
       this.position.y
     );
+  }
+  loadPlayer() {
+    c.drawImage(
+      playerImage,
+      0,
+      0,
+      playerImage.width / 4,
+      playerImage.height,
+      canvas.width / 2 - playerImage.width / 8,
+      canvas.height / 2 - playerImage.height / 2,
+      playerImage.width / 4,
+      playerImage.height
+    )
   }
 }
 
@@ -65,18 +77,20 @@ function animate() {
   window.requestAnimationFrame(animate)
   // console.log("Animate...")
   background.draw()
+  background.loadPlayer()
 
-  c.drawImage(
-    playerImage,
-    0,
-    0,
-    playerImage.width / 4,
-    playerImage.height,
-    canvas.width / 2 - playerImage.width / 8,
-    canvas.height / 2 - playerImage.height / 2,
-    playerImage.width / 4,
-    playerImage.height
-  )
+  if (keys.w.pressed) {
+    background.position.y += 3;
+  }
+  if (keys.a.pressed) {
+    background.position.x += 3;
+  }
+  if (keys.s.pressed) {
+    background.position.y -= 3;
+  }
+  if (keys.d.pressed) {
+    background.position.x -= 3;
+  }
 }
 animate()
 
@@ -100,6 +114,29 @@ window.addEventListener('keydown', (event) => {
     case 'KeyD':
       keys.d.pressed = true
       console.log("A key is pressed..", event.code)
+      break;
+
+    default:
+      break;
+  }
+  // console.log(keys);
+})
+window.addEventListener('keyup', (event) => {
+  switch (event.code) {
+    case 'KeyW':
+      keys.w.pressed = false
+      break;
+
+    case 'KeyA':
+      keys.a.pressed = false
+      break;
+
+    case 'KeyS':
+      keys.s.pressed = false
+      break;
+
+    case 'KeyD':
+      keys.d.pressed = false
       break;
 
     default:
