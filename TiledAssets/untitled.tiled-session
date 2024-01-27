@@ -7,13 +7,37 @@
     "expandedProjectPaths": [
         "."
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
-        "GameMap.tmx": {
-            "scale": 8,
-            "selectedLayer": 1,
+        "C:/Users/sharm/OneDrive/Desktop/Codex/JavaScript/Assets/Pellet Town.tmx": {
+            "expandedGroupLayers": [
+                9,
+                8
+            ],
+            "scale": 2,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 180.875,
-                "y": 313.625
+                "x": 91.5,
+                "y": 171
+            }
+        },
+        "C:/Users/sharm/OneDrive/Desktop/Codex/JavaScript/Assets/collisionTileset.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/sharm/OneDrive/Desktop/Codex/JavaScript/Assets/pokemonStyleGameTileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Collision.tsx": {
+            "scaleInDock": 11,
+            "scaleInEditor": 1
+        },
+        "GameMap.tmx": {
+            "scale": 3,
+            "selectedLayer": 12,
+            "viewCenter": {
+                "x": 308.6666666666667,
+                "y": 304
             }
         },
         "Pokemon Style Game.tsx": {
@@ -22,6 +46,7 @@
         }
     },
     "last.imagePath": "C:/Users/sharm/OneDrive/Desktop/Codex/JavaScript/Assets",
+    "map.fixedSize": false,
     "map.height": 40,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 12,
@@ -29,16 +54,23 @@
     "map.width": 70,
     "openFiles": [
         "Pokemon Style Game.tsx",
-        "GameMap.tmx"
+        "GameMap.tmx",
+        "C:/Users/sharm/OneDrive/Desktop/Codex/JavaScript/Assets/Pellet Town.tmx"
     ],
     "project": "untitled.tiled-project",
+    "property.type": "color",
     "recentFiles": [
         "Pokemon Style Game.tsx",
-        "GameMap.tmx"
+        "C:/Users/sharm/OneDrive/Desktop/Codex/JavaScript/Assets/Pellet Town.tmx",
+        "GameMap.tmx",
+        "Collision.tsx",
+        "C:/Users/sharm/OneDrive/Desktop/Codex/JavaScript/Assets/pokemonStyleGameTileset.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 12,
         "width": 12
-    }
+    },
+    "tileset.transparentColor": "#ff0000",
+    "tileset.useTransparentColor": false
 }
