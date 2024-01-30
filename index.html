@@ -10,11 +10,35 @@
       background-color: black;
       padding: .5rem;
     }
+
+    .screen {
+      display: inline-block;
+      position: relative;
+    }
+
+    .foreground {
+      background-color: rgb(255, 0, 0);
+      /* width: 200px;
+      height: 200px; */
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      opacity: 0;
+      /* display: none; */
+    }
   </style>
 </head>
 
 <body>
-  <canvas></canvas>
+  <div class="screen">
+    <div id="OverlappingDiv" class="foreground"></div>
+    <canvas></canvas>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+    integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="./data/collisions.js"></script>
   <script src="./data/battleZones.js"></script>
   <script src="./classes.js"></script>

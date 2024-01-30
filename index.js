@@ -1,6 +1,7 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
+
 canvas.width = 1024;
 canvas.height = 576;
 
@@ -120,37 +121,73 @@ function rectangleCollision({ rectangle1, rectangle2 }) {
   );
 }
 
+const battle = {
+  initiated: false
+}
+
 function animate() {
-  window.requestAnimationFrame(animate)
+  const animationId = window.requestAnimationFrame(animate)
   background.draw()
   // boundaries.forEach(boundary => {
   //   boundary.draw()
   // })
-  // battleZones.forEach(battleZone => {
-  //   battleZone.draw()
-  // })
+  battleZones.forEach(battleZone => {
+    battleZone.draw()
+  })
   player.draw()
   foreground.draw()
+
+  let moving = true;
+  player.moving = false;
+
+  console.log(animationId)
+  if (battle.initiated) return
 
   if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
     for (let i = 0; i < battleZones.length; i++) {
       const battleZone = battleZones[i];
-      const overlappingArea = Math.max(player.position.x, battleZone.position.x)
+      const overlappingArea =
+        (Math.min(
+          player.position.x + player.width,
+          battleZone.position.x + battleZone.width
+        ) -
+          Math.max(player.position.x, battleZone.position.x)
+        ) * (Math.min(
+          player.position.y + player.height,
+          battleZone.position.y + battleZone.height
+        ) -
+          Math.max(player.position.y, battleZone.position.y))
       if (
         rectangleCollision({
           rectangle1: player,
           rectangle2: battleZone
         }) &&
-        overlappingArea > (player.width * player.height) / 2
+        overlappingArea > (player.width * player.height) / 2 &&
+        Math.random() < 0.1
       ) {
-        console.log("BattleZone collision")
+        console.log("BattleZone Activate...")
+        battle.initiated = true
+
+        window.cancelAnimationFrame(animationId)
+
+        gsap.to('#OverlappingDiv', {
+          opacity: 1,
+          repeat: 3,
+          yoyo: true,
+          duration: 0.4,
+          onComplete() {
+            gsap.to('#OverlappingDiv', {
+              opacity: 1,
+              duration: 0.4,
+            })
+            animateBattle();
+          }
+        })
         break
       }
     }
   }
 
-  let moving = true;
-  player.moving = false;
   if (keys.w.pressed && lastKey === 'w') {
     player.moving = true;
     player.image = player.sprites.up;
@@ -254,6 +291,10 @@ function animate() {
   }
 }
 animate()
+
+function animateBattle() {
+  window.requestAnimationFrame(animateBattle);
+}
 
 let lastKey = '';
 window.addEventListener('keydown', (event) => {
