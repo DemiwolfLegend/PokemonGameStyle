@@ -140,7 +140,7 @@ function animate() {
   let moving = true;
   player.moving = false;
 
-  console.log(animationId)
+  // console.log(animationId)
   if (battle.initiated) return
 
   if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
@@ -176,11 +176,17 @@ function animate() {
           yoyo: true,
           duration: 0.4,
           onComplete() {
-            gsap.to('#OverlappingDiv', {
-              opacity: 1,
-              duration: 0.4,
-            })
+            // gsap.to('#OverlappingDiv', {
+            //   opacity: 1,
+            //   duration: 0.4,
+            // onComplete() {
             animateBattle();
+            // gsap.to('#OverlappingDiv', {
+            //   opacity: 0,
+            //   duration: 0.4,
+            // })
+            // }
+            // })
           }
         })
         break
@@ -290,11 +296,22 @@ function animate() {
     }
   }
 }
-animate()
+// animate()
+
+const battleBackgroundImage = new Image()
+battleBackgroundImage.src = './img/battleBackground.png'
+const battleBackground = new Sprite({
+  position: {
+    x: 0, y: 0
+  },
+  image: battleBackgroundImage
+})
 
 function animateBattle() {
   window.requestAnimationFrame(animateBattle);
+  battleBackground.draw()
 }
+animateBattle()
 
 let lastKey = '';
 window.addEventListener('keydown', (event) => {
