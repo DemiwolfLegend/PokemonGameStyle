@@ -109,7 +109,7 @@ const keys = {
   },
 }
 
-const movables = [background, ...boundaries, foreground]
+const movables = [background, ...boundaries, foreground, ...battleZones]
 
 function rectangleCollision({ rectangle1, rectangle2 }) {
   return (
@@ -123,18 +123,31 @@ function rectangleCollision({ rectangle1, rectangle2 }) {
 function animate() {
   window.requestAnimationFrame(animate)
   background.draw()
-  boundaries.forEach(boundary => {
-    boundary.draw()
-
-    if (rectangleCollision({
-      rectangle1: player,
-      rectangle2: boundary
-    })) {
-      console.log("Colliding")
-    }
-  })
+  // boundaries.forEach(boundary => {
+  //   boundary.draw()
+  // })
+  // battleZones.forEach(battleZone => {
+  //   battleZone.draw()
+  // })
   player.draw()
   foreground.draw()
+
+  if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+    for (let i = 0; i < battleZones.length; i++) {
+      const battleZone = battleZones[i];
+      const overlappingArea = Math.max(player.position.x, battleZone.position.x)
+      if (
+        rectangleCollision({
+          rectangle1: player,
+          rectangle2: battleZone
+        }) &&
+        overlappingArea > (player.width * player.height) / 2
+      ) {
+        console.log("BattleZone collision")
+        break
+      }
+    }
+  }
 
   let moving = true;
   player.moving = false;
@@ -162,6 +175,7 @@ function animate() {
         movable.position.y += 3;
       })
     }
+
   }
   else if (keys.a.pressed && lastKey === 'a') {
     player.moving = true;
