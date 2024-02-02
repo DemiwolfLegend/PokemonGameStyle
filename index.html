@@ -5,10 +5,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pokemon style game</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
   <style>
+    * {
+
+      font-family: 'Press Start 2P', cursive;
+    }
+
     body {
       background-color: black;
       padding: .5rem;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    button {
+      border: 0;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #cccccc;
     }
 
     .screen {
@@ -28,21 +53,168 @@
       opacity: 0;
       /* display: none; */
     }
+
+    .attackMenu {
+      background-color: white;
+      position: absolute;
+      width: 100%;
+      height: 100px;
+      bottom: 0px;
+      border-top: 4px solid rgb(0, 0, 0);
+      display: flex;
+    }
+
+    .attackList {
+      width: 70%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .attackLabel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30%;
+      border-left: 4px solid black;
+    }
+
+    .attackLabel h1 {
+      font-size: 1rem;
+    }
+
+
+    .topBox {
+      background-color: white;
+      width: 250px;
+      position: absolute;
+      margin: 50px;
+      border: 4px solid black;
+      padding: 12px;
+    }
+
+    .topBox__text {
+      font-size: 1rem;
+    }
+
+    .topBox__BarSet {
+      position: relative;
+      margin: 12px;
+    }
+
+    .topBox__Bar_gray {
+      height: 5px;
+      background-color: #a3a3a3;
+      position: absolute;
+      left: 0;
+      right: 0;
+    }
+
+    .topBox__Bar_green {
+      height: 5px;
+      background-color: green;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .bottomBox {
+      background-color: white;
+      width: 250px;
+      top: 300px;
+      right: 50px;
+      position: absolute;
+      border: 4px solid black;
+      padding: 12px;
+    }
+
+    .bottomBox__text {
+      font-size: 1rem;
+    }
+
+    .bottomBox__BarSet {
+      position: relative;
+      margin: 12px;
+    }
+
+    .bottomBox__Bar_gray {
+      height: 5px;
+      background-color: #a3a3a3;
+      position: absolute;
+      left: 0;
+      right: 0;
+    }
+
+    .bottomBox__Bar_green {
+      height: 5px;
+      background-color: green;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .dialogBox {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: white;
+      padding: 12px;
+      display: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 
 <body>
   <div class="screen">
     <div id="OverlappingDiv" class="foreground"></div>
+    <div class="topBox">
+      <h1 class="topBox__text">
+        Draggle
+      </h1>
+      <div class="topBox__BarSet">
+        <div class="topBox__Bar_gray"></div>
+        <div id="DraggleHealthBar" class="topBox__Bar_green"></div>
+      </div>
+    </div>
+    <div class="bottomBox">
+      <h1 class="bottomBox__text">
+        Emby
+      </h1>
+      <div class="bottomBox__BarSet">
+        <div class="bottomBox__Bar_gray"></div>
+        <div id="EmbyhealthBar" class="bottomBox__Bar_green"></div>
+      </div>
+    </div>
     <canvas></canvas>
+    <div class="attackMenu">
+      <div id="dialogBox" class="dialogBox">
+        skadjfhksadjh
+      </div>
+      <div class="attackList">
+        <!-- <button>Tackle</button>
+        <button>Fireball</button> -->
+        <!-- <button>Attack3</button>
+        <button>Attack4</button> -->
+      </div>
+      <div class="attackLabel">
+        <h1>Attack Type</h1>
+      </div>
+    </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
     integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="./data/collisions.js"></script>
   <script src="./data/battleZones.js"></script>
+  <script src="./data/attacks.js"></script>
+  <script src="./data/monsters.js"></script>
   <script src="./classes.js"></script>
   <script src="./index.js"></script>
+  <script src="./battleScene.js"></script>
 </body>
 
 </html>

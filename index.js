@@ -71,7 +71,7 @@ const player = new Sprite({
     y: canvas.height / 2 - playerImage.height / 2
   },
   image: playerImage,
-  frames: { max: 4 },
+  frames: { max: 4, hold: 10 },
   sprites: {
     up: playerUpImage,
     left: playerLeftImage,
@@ -138,7 +138,7 @@ function animate() {
   foreground.draw()
 
   let moving = true;
-  player.moving = false;
+  player.animate = false;
 
   // console.log(animationId)
   if (battle.initiated) return
@@ -176,17 +176,17 @@ function animate() {
           yoyo: true,
           duration: 0.4,
           onComplete() {
-            // gsap.to('#OverlappingDiv', {
-            //   opacity: 1,
-            //   duration: 0.4,
-            // onComplete() {
-            animateBattle();
-            // gsap.to('#OverlappingDiv', {
-            //   opacity: 0,
-            //   duration: 0.4,
-            // })
-            // }
-            // })
+            gsap.to('#OverlappingDiv', {
+              opacity: 1,
+              duration: 0.4,
+              onComplete() {
+                animateBattle();
+                gsap.to('#OverlappingDiv', {
+                  opacity: 0,
+                  duration: 0.4,
+                })
+              }
+            })
           }
         })
         break
@@ -195,7 +195,7 @@ function animate() {
   }
 
   if (keys.w.pressed && lastKey === 'w') {
-    player.moving = true;
+    player.animate = true;
     player.image = player.sprites.up;
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i]
@@ -221,7 +221,7 @@ function animate() {
 
   }
   else if (keys.a.pressed && lastKey === 'a') {
-    player.moving = true;
+    player.animate = true;
     player.image = player.sprites.left;
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i]
@@ -246,7 +246,7 @@ function animate() {
     }
   }
   else if (keys.s.pressed && lastKey === 's') {
-    player.moving = true;
+    player.animate = true;
     player.image = player.sprites.down;
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i]
@@ -271,7 +271,7 @@ function animate() {
     }
   }
   else if (keys.d.pressed && lastKey === 'd') {
-    player.moving = true;
+    player.animate = true;
     player.image = player.sprites.right;
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i]
@@ -298,20 +298,9 @@ function animate() {
 }
 // animate()
 
-const battleBackgroundImage = new Image()
-battleBackgroundImage.src = './img/battleBackground.png'
-const battleBackground = new Sprite({
-  position: {
-    x: 0, y: 0
-  },
-  image: battleBackgroundImage
-})
 
-function animateBattle() {
-  window.requestAnimationFrame(animateBattle);
-  battleBackground.draw()
-}
-animateBattle()
+// window.addEventListener("click", () => {
+// })
 
 let lastKey = '';
 window.addEventListener('keydown', (event) => {
