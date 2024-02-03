@@ -36,6 +36,10 @@
       background-color: #cccccc;
     }
 
+    #userInterface {
+      display: none;
+    }
+
     .screen {
       display: inline-block;
       position: relative;
@@ -51,6 +55,7 @@
       left: 0px;
       right: 0px;
       opacity: 0;
+      z-index: 10;
       /* display: none; */
     }
 
@@ -87,7 +92,8 @@
       background-color: white;
       width: 250px;
       position: absolute;
-      margin: 50px;
+      top: 50px;
+      left: 50px;
       border: 4px solid black;
       padding: 12px;
     }
@@ -171,45 +177,51 @@
 <body>
   <div class="screen">
     <div id="OverlappingDiv" class="foreground"></div>
-    <div class="topBox">
-      <h1 class="topBox__text">
-        Draggle
-      </h1>
-      <div class="topBox__BarSet">
-        <div class="topBox__Bar_gray"></div>
-        <div id="DraggleHealthBar" class="topBox__Bar_green"></div>
-      </div>
-    </div>
-    <div class="bottomBox">
-      <h1 class="bottomBox__text">
-        Emby
-      </h1>
-      <div class="bottomBox__BarSet">
-        <div class="bottomBox__Bar_gray"></div>
-        <div id="EmbyhealthBar" class="bottomBox__Bar_green"></div>
-      </div>
-    </div>
+
     <canvas></canvas>
-    <div class="attackMenu">
-      <div id="dialogBox" class="dialogBox">
-        skadjfhksadjh
+    <div id="userInterface">
+      <div class="topBox">
+        <h1 class="topBox__text">
+          Draggle
+        </h1>
+        <div class="topBox__BarSet">
+          <div class="topBox__Bar_gray"></div>
+          <div id="DraggleHealthBar" class="topBox__Bar_green"></div>
+        </div>
       </div>
-      <div class="attackList">
-        <!-- <button>Tackle</button>
-        <button>Fireball</button> -->
-        <!-- <button>Attack3</button>
-        <button>Attack4</button> -->
+      <div class="bottomBox">
+        <h1 class="bottomBox__text">
+          Emby
+        </h1>
+        <div class="bottomBox__BarSet">
+          <div class="bottomBox__Bar_gray"></div>
+          <div id="EmbyhealthBar" class="bottomBox__Bar_green"></div>
+        </div>
       </div>
-      <div class="attackLabel">
-        <h1>Attack Type</h1>
+      <div class="attackMenu">
+        <div id="dialogBox" class="dialogBox">
+        </div>
+        <div class="attackList">
+          <!-- <button>Tackle</button>
+          <button>Fireball</button> -->
+          <!-- <button>Attack3</button>
+          <button>Attack4</button> -->
+        </div>
+        <div class="attackLabel">
+          <h1>Attack Type</h1>
+        </div>
       </div>
     </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+    integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
     integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="./data/collisions.js"></script>
   <script src="./data/battleZones.js"></script>
+  <script src="./data/audio.js"></script>
   <script src="./data/attacks.js"></script>
   <script src="./data/monsters.js"></script>
   <script src="./classes.js"></script>

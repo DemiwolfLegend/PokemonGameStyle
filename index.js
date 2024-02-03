@@ -1,7 +1,9 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
+let clicked = false
 
-
+// audio.Map.play()
+// console.log()
 canvas.width = 1024;
 canvas.height = 576;
 
@@ -52,10 +54,6 @@ battleZonesMap.forEach((row, i) => {
   })
 })
 
-const backgroundImage = new Image();
-backgroundImage.src = './img/Pellet Town.png';
-const foregroundImage = new Image();
-foregroundImage.src = './img/foregroundObjects.png';
 const playerImage = new Image()
 playerImage.src = './img/playerDown.png'
 const playerUpImage = new Image()
@@ -85,14 +83,14 @@ const background = new Sprite({
     x: offset.x,
     y: offset.y
   },
-  image: backgroundImage
+  image: { src: './img/Pellet Town.png' }
 })
 const foreground = new Sprite({
   position: {
     x: offset.x,
     y: offset.y
   },
-  image: foregroundImage
+  image: { src: './img/foregroundObjects.png' }
 })
 
 const keys = {
@@ -126,6 +124,11 @@ const battle = {
 }
 
 function animate() {
+
+  if (!clicked) {
+    audio.Map.play()
+    clicked = true
+  }
   const animationId = window.requestAnimationFrame(animate)
   background.draw()
   // boundaries.forEach(boundary => {
@@ -163,9 +166,12 @@ function animate() {
           rectangle2: battleZone
         }) &&
         overlappingArea > (player.width * player.height) / 2 &&
-        Math.random() < 0.1
+        Math.random() < 0.01
       ) {
-        console.log("BattleZone Activate...")
+        // console.log("BattleZone Activate...")
+        audio.initBattle.play()
+        audio.battle.play()
+        audio.Map.stop()
         battle.initiated = true
 
         window.cancelAnimationFrame(animationId)
@@ -180,6 +186,7 @@ function animate() {
               opacity: 1,
               duration: 0.4,
               onComplete() {
+                initBattle()
                 animateBattle();
                 gsap.to('#OverlappingDiv', {
                   opacity: 0,

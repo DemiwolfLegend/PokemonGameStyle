@@ -7,7 +7,7 @@ class Boundry {
     this.height = 48
   }
   draw() {
-    c.fillStyle = 'rgba(255,0,0,0.2)'
+    c.fillStyle = 'rgba(255,0,0,0)'
     c.fillRect(this.position.x, this.position.y, this.width, this.height)
   }
 }
@@ -23,10 +23,13 @@ class Sprite {
     rotation = 0,
   }) {
     this.position = position
-    this.image = image
+    this.image = new Image()
     this.frames = { ...frames, val: 0, elapsed: 0 }
-    this.width = this.image.width / this.frames.max
-    this.height = this.image.height
+    this.image.onload = () => {
+      this.width = this.image.width / this.frames.max
+      this.height = this.image.height
+    }
+    this.image.src = image.src
     this.animate = animate
     this.sprites = sprites
     this.opacity = 1
@@ -99,6 +102,13 @@ class Monster extends Sprite {
   faint() {
 
     document.querySelector('#dialogBox').innerHTML = `${this.name} fainted!`
+    gsap.to(this.position, {
+      y: this.position.y + 20
+    })
+    gsap.to(this, {
+      opacity: 0
+    })
+    audio.victory.play()
   }
   attack({ attack, recipient, renderedSprites }) {
     document.querySelector('#dialogBox').style.display = 'block';
@@ -117,6 +127,7 @@ class Monster extends Sprite {
           x: this.position.x + movementDistance * 2,
           duration: 0.1,
           onComplete() {
+            audio.tackleHit.play()
             gsap.to(healthBar, {
               width: recipient.health + '%'
             })
@@ -138,7 +149,7 @@ class Monster extends Sprite {
         })
         break;
       case 'Fireball':
-
+        audio.initFireball.play()
         const fireballImage = new Image()
         fireballImage.src = "./img/fireball.png"
         const fireball = new Sprite({
@@ -159,7 +170,9 @@ class Monster extends Sprite {
           y: recipient.position.y,
           onComplete() {
             // renderedSprites.pop()
+            audio.fireballHit.play()
             renderedSprites.splice(1, 1)
+            audio.initFireball.stop()
             gsap.to(healthBar, {
               width: recipient.health + '%'
             })
