@@ -122,6 +122,7 @@ function rectangleCollision({ rectangle1, rectangle2 }) {
 const battle = {
   initiated: false
 }
+let lastkey;
 
 function animate() {
 
@@ -147,6 +148,7 @@ function animate() {
   if (battle.initiated) return
 
   if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+    // console.log(`Moving : ${moving}`)
     for (let i = 0; i < battleZones.length; i++) {
       const battleZone = battleZones[i];
       const overlappingArea =
@@ -168,7 +170,7 @@ function animate() {
         overlappingArea > (player.width * player.height) / 2 &&
         Math.random() < 0.01
       ) {
-        // console.log("BattleZone Activate...")
+        console.log("BattleZone Activate...")
         audio.initBattle.play()
         audio.battle.play()
         audio.Map.stop()
@@ -202,6 +204,7 @@ function animate() {
   }
 
   if (keys.w.pressed && lastKey === 'w') {
+    // console.log(`lastKey : ${lastKey}`)
     player.animate = true;
     player.image = player.sprites.up;
     for (let i = 0; i < boundaries.length; i++) {
@@ -228,6 +231,7 @@ function animate() {
 
   }
   else if (keys.a.pressed && lastKey === 'a') {
+    // console.log(`lastKey : ${lastKey}`)
     player.animate = true;
     player.image = player.sprites.left;
     for (let i = 0; i < boundaries.length; i++) {
@@ -253,6 +257,7 @@ function animate() {
     }
   }
   else if (keys.s.pressed && lastKey === 's') {
+    // console.log(`lastkey : ${lastkey}`)
     player.animate = true;
     player.image = player.sprites.down;
     for (let i = 0; i < boundaries.length; i++) {
@@ -278,6 +283,7 @@ function animate() {
     }
   }
   else if (keys.d.pressed && lastKey === 'd') {
+    // console.log(`lastkey : ${lastkey}`)
     player.animate = true;
     player.image = player.sprites.right;
     for (let i = 0; i < boundaries.length; i++) {
